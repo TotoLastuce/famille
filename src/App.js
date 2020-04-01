@@ -58,7 +58,7 @@ class App extends Component {
             <strong>Parmi les 4 qui est William ?</strong>
           </Membre>
           <Button 
-           vieillir={() => this.handleClick(2)} />
+           vieillir={() => this.handleClick(2)} num="2"/>
         </div>
         
       </Fragment>
