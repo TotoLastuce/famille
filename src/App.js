@@ -34,6 +34,14 @@ class App extends Component {
     fraterie.membre1.age += num
     this.setState ({fraterie})
   }
+
+  handleChange = event => {
+    const fraterie = {...this.state.fraterie}
+    const nom = event.target.value
+    fraterie.membre1.nom = nom
+    this.setState ({fraterie})
+  }
+
   render () {
     const {titre} = this.props
     const {fraterie} = this.state
@@ -43,6 +51,7 @@ class App extends Component {
       <Fragment>
         <div className='App'>
           <h1>{titre}</h1>
+          <input value={fraterie.membre1.nom} onChange={this.handleChange} type='text' />
           <Membre 
             age={fraterie.membre1.age}
             nom={fraterie.membre1.nom}/>
@@ -58,7 +67,7 @@ class App extends Component {
             <strong>Parmi les 4 qui est William ?</strong>
           </Membre>
           <Button 
-           vieillir={() => this.handleClick(2)} />
+           vieillir={() => this.handleClick(2)} num="2"/>
         </div>
         
       </Fragment>
