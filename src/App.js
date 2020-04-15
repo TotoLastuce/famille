@@ -35,10 +35,59 @@ class App extends Component {
     this.setState ({fraterie})
   }
 
-  handleChange = event => {
+  handleChangeNomT = event => {
     const fraterie = {...this.state.fraterie}
     const nom = event.target.value
     fraterie.membre1.nom = nom
+    this.setState ({fraterie})
+  }
+
+  handleChangeAgeT = event => {
+    const fraterie = {...this.state.fraterie}
+    const age = event.target.value
+    fraterie.membre1.age = age
+    this.setState ({fraterie})
+  }
+
+  handleChangeNomG = event => {
+    const fraterie = {...this.state.fraterie}
+    const nom = event.target.value
+    fraterie.membre2.nom = nom
+    this.setState ({fraterie})
+  }
+
+  handleChangeAgeG = event => {
+    const fraterie = {...this.state.fraterie}
+    const age = event.target.value
+    fraterie.membre2.age = age
+    this.setState ({fraterie})
+  }
+
+  handleChangeNomB = event => {
+    const fraterie = {...this.state.fraterie}
+    const nom = event.target.value
+    fraterie.membre3.nom = nom
+    this.setState ({fraterie})
+  }
+
+  handleChangeAgeB = event => {
+    const fraterie = {...this.state.fraterie}
+    const age = event.target.value
+    fraterie.membre3.age = age
+    this.setState ({fraterie})
+  }
+
+  handleChangeNomY = event => {
+    const fraterie = {...this.state.fraterie}
+    const nom = event.target.value
+    fraterie.membre4.nom = nom
+    this.setState ({fraterie})
+  }
+
+  handleChangeAgeY = event => {
+    const fraterie = {...this.state.fraterie}
+    const age = event.target.value
+    fraterie.membre4.age = age
     this.setState ({fraterie})
   }
 
@@ -51,16 +100,23 @@ class App extends Component {
       <Fragment>
         <div className='App'>
           <h1>{titre}</h1>
-          <input value={fraterie.membre1.nom} onChange={this.handleChange} type='text' />
+          <input value={fraterie.membre1.nom} onChange={this.handleChangeNomT} type='text' />
+          <input value={fraterie.membre1.age} onChange={this.handleChangeAgeT} type='text' />
           <Membre 
             age={fraterie.membre1.age}
             nom={fraterie.membre1.nom}/>
+          <input value={fraterie.membre2.nom} onChange={this.handleChangeNomG} type='text' />
+          <input value={fraterie.membre2.age} onChange={this.handleChangeAgeG} type='text' />
           <Membre 
             age={fraterie.membre2.age}
             nom={fraterie.membre2.nom}/>
+          <input value={fraterie.membre3.nom} onChange={this.handleChangeNomB} type='text' />
+          <input value={fraterie.membre3.age} onChange={this.handleChangeAgeB} type='text' />
           <Membre 
             age={fraterie.membre3.age}
             nom={fraterie.membre3.nom}/>
+          <input value={fraterie.membre4.nom} onChange={this.handleChangeNomY} type='text' />
+          <input value={fraterie.membre4.age} onChange={this.handleChangeAgeY} type='text' />
           <Membre 
             age={fraterie.membre4.age}
             nom={fraterie.membre4.nom}>
