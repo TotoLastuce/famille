@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import './Membre.css'
 
 // function Membre () {
 //     return (
@@ -6,7 +7,7 @@ import React, { Fragment } from 'react'
 //     )
 // }
 
-const Membre = ({nom, age, children}) => {
+const Membre = ({nom, age, children, hideName, handleChange}) => {
     // const name = props.nom
     // console.log(props)
     return (
@@ -16,6 +17,8 @@ const Membre = ({nom, age, children}) => {
             color: age < 27 ? 'blue' : 'red' }}>
             {nom.toUpperCase()} : {age} ans
         </h2>
+        <input value={nom} onChange={handleChange} type='text' />
+        <button className="btnhide" onClick={hideName}>X</button>
         {children ? <p>{children}</p> : <Fragment /> }
         
         </Fragment>

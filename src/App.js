@@ -37,61 +37,74 @@ class App extends Component {
     this.setState ({fraterie})
   }
 
-  handleChangeNomT = event => {
+  handleChange = (event, id) => {
     const fraterie = {...this.state.fraterie}
     const nom = event.target.value
-    fraterie.membre1.nom = nom
+    fraterie[id].nom = nom
     this.setState ({fraterie})
   }
 
-  handleChangeAgeT = event => {
+  hideName = (id) => {
     const fraterie = {...this.state.fraterie}
-    const age = event.target.value
-    fraterie.membre1.age = age
+    fraterie[id].nom = 'X'
     this.setState ({fraterie})
   }
 
-  handleChangeNomG = event => {
-    const fraterie = {...this.state.fraterie}
-    const nom = event.target.value
-    fraterie.membre2.nom = nom
-    this.setState ({fraterie})
-  }
+  // handleChangeNomT = event => {
+  //   const fraterie = {...this.state.fraterie}
+  //   const nom = event.target.value
+  //   fraterie.membre1.nom = nom
+  //   this.setState ({fraterie})
+  // }
 
-  handleChangeAgeG = event => {
-    const fraterie = {...this.state.fraterie}
-    const age = event.target.value
-    fraterie.membre2.age = age
-    this.setState ({fraterie})
-  }
+  // handleChangeAgeT = event => {
+  //   const fraterie = {...this.state.fraterie}
+  //   const age = event.target.value
+  //   fraterie.membre1.age = age
+  //   this.setState ({fraterie})
+  // }
 
-  handleChangeNomB = event => {
-    const fraterie = {...this.state.fraterie}
-    const nom = event.target.value
-    fraterie.membre3.nom = nom
-    this.setState ({fraterie})
-  }
+  // handleChangeNomG = event => {
+  //   const fraterie = {...this.state.fraterie}
+  //   const nom = event.target.value
+  //   fraterie.membre2.nom = nom
+  //   this.setState ({fraterie})
+  // }
 
-  handleChangeAgeB = event => {
-    const fraterie = {...this.state.fraterie}
-    const age = event.target.value
-    fraterie.membre3.age = age
-    this.setState ({fraterie})
-  }
+  // handleChangeAgeG = event => {
+  //   const fraterie = {...this.state.fraterie}
+  //   const age = event.target.value
+  //   fraterie.membre2.age = age
+  //   this.setState ({fraterie})
+  // }
 
-  handleChangeNomY = event => {
-    const fraterie = {...this.state.fraterie}
-    const nom = event.target.value
-    fraterie.membre4.nom = nom
-    this.setState ({fraterie})
-  }
+  // handleChangeNomB = event => {
+  //   const fraterie = {...this.state.fraterie}
+  //   const nom = event.target.value
+  //   fraterie.membre3.nom = nom
+  //   this.setState ({fraterie})
+  // }
 
-  handleChangeAgeY = event => {
-    const fraterie = {...this.state.fraterie}
-    const age = event.target.value
-    fraterie.membre4.age = age
-    this.setState ({fraterie})
-  }
+  // handleChangeAgeB = event => {
+  //   const fraterie = {...this.state.fraterie}
+  //   const age = event.target.value
+  //   fraterie.membre3.age = age
+  //   this.setState ({fraterie})
+  // }
+
+  // handleChangeNomY = event => {
+  //   const fraterie = {...this.state.fraterie}
+  //   const nom = event.target.value
+  //   fraterie.membre4.nom = nom
+  //   this.setState ({fraterie})
+  // }
+
+  // handleChangeAgeY = event => {
+  //   const fraterie = {...this.state.fraterie}
+  //   const age = event.target.value
+  //   fraterie.membre4.age = age
+  //   this.setState ({fraterie})
+  // }
 
   handleShowQuestion = () => {
     const isShowQ = !this.state.isShowQ
@@ -126,8 +139,11 @@ class App extends Component {
     const liste = Object.keys(fraterie)
       .map(membre => (
         <Membre
-        age={fraterie[membre].age}
-        nom={fraterie[membre].nom}/>
+          handleChange={event => this.handleChange(event, membre)}
+          key={membre}
+          hideName={() => this.hideName(membre)}
+          age={fraterie[membre].age}
+          nom={fraterie[membre].nom}/>
       ))
     console.log(liste)
 
@@ -138,6 +154,7 @@ class App extends Component {
         <div className='App'>
           <h1>{titre}</h1>
           { liste }
+          <br></br>
           {/* <input value={fraterie.membre1.nom} onChange={this.handleChangeNomT} type='text' />
           <input value={fraterie.membre1.age} onChange={this.handleChangeAgeT} type='text' />
           <Membre 
