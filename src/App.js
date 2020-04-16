@@ -26,7 +26,8 @@ const fraterie = {
 class App extends Component {
   state = {
     fraterie,
-    isShow: false
+    isShowQ: false,
+    isShowR: false
   }
 
   handleClick = (num) => {
@@ -93,20 +94,51 @@ class App extends Component {
   }
 
   handleShowQuestion = () => {
-    const isShow = !this.state.isShow
-    this.setState({ isShow })
+    const isShowQ = !this.state.isShowQ
+    this.setState({ isShowQ })
+  }
+
+  handleShowRéponse = () => {
+    const isShowR = !this.state.isShowR
+    this.setState({ isShowR })
   }
 
   render () {
     const {titre} = this.props
-    const {fraterie, isShow} = this.state
+    const {fraterie, isShowQ, isShowR} = this.state
+
+    let question = null
+
+    if (isShowQ) {
+      question = (
+      <strong>Parmi les 4 qui est William ?</strong>
+      )
+    }
+
+    let réponse = null
+
+    if (isShowR) {
+      réponse = (
+        <strong>William c'est Gaétan (l'ordre complet du plus vieux au plus jeune : Joe, William, Jack et enfin Averell</strong>
+      )
+    }
+
+    const liste = Object.keys(fraterie)
+      .map(membre => (
+        <Membre
+        age={fraterie[membre].age}
+        nom={fraterie[membre].nom}/>
+      ))
+    console.log(liste)
+
     return (
       // React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'React App'))
       // pour plus de praticité on utilise du JSX :
       <Fragment>
         <div className='App'>
           <h1>{titre}</h1>
-          <input value={fraterie.membre1.nom} onChange={this.handleChangeNomT} type='text' />
+          { liste }
+          {/* <input value={fraterie.membre1.nom} onChange={this.handleChangeNomT} type='text' />
           <input value={fraterie.membre1.age} onChange={this.handleChangeAgeT} type='text' />
           <Membre 
             age={fraterie.membre1.age}
@@ -120,29 +152,41 @@ class App extends Component {
           <input value={fraterie.membre3.age} onChange={this.handleChangeAgeB} type='text' />
           <Membre 
             age={fraterie.membre3.age}
-            nom={fraterie.membre3.nom}/>
+            nom={fraterie.membre3.nom}/> 
           <input value={fraterie.membre4.nom} onChange={this.handleChangeNomY} type='text' />
           <input value={fraterie.membre4.age} onChange={this.handleChangeAgeY} type='text' />
           <Membre 
             age={fraterie.membre4.age}
-            nom={fraterie.membre4.nom}>
-            {
-            isShow ? <strong>Parmi les 4 qui est William ?</strong> : null
-            }
+            nom={fraterie.membre4.nom}/> */}
+          <Fragment>
+
+            {question}
             <br></br>
-            <button onClick={this.handleShowQuestion}>         
+            <button className="btnquestion" onClick={this.handleShowQuestion}>         
             {
-              isShow ? 'Cacher' : 'Question ?'
+              isShowQ ? 'Cacher' : 'Question ?'
             }
-            </button> 
-          </Membre>
+            </button>
+            <br></br>
+            {réponse}
+            <br></br>
+            <button className="btnréponse" onClick={this.handleShowRéponse}>
+            {
+              isShowR ? 'Cacher la réponse' : 'Voir la réponse'
+            }
+            </button>
+
+          </Fragment>
+          
+          <br></br>
+
           <Button 
            vieillir={() => this.handleClick(2)} num="2"/>
         </div>
         
       </Fragment>
     );
-}
+  }
 }
 
 export default App;

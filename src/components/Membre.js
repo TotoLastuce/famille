@@ -14,7 +14,7 @@ const Membre = ({nom, age, children}) => {
         <h2 style={{ 
             backgroundColor: age < 27 ? 'yellow' : 'aqua',
             color: age < 27 ? 'blue' : 'red' }}>
-            Membre de la fraterie : {nom.toUpperCase()} : {age} ans
+            {nom.toUpperCase()} : {age} ans
         </h2>
         {children ? <p>{children}</p> : <Fragment /> }
         
