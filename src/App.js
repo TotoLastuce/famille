@@ -25,7 +25,8 @@ const fraterie = {
 
 class App extends Component {
   state = {
-    fraterie
+    fraterie,
+    isShow: false
   }
 
   handleClick = (num) => {
@@ -91,9 +92,14 @@ class App extends Component {
     this.setState ({fraterie})
   }
 
+  handleShowQuestion = () => {
+    const isShow = !this.state.isShow
+    this.setState({ isShow })
+  }
+
   render () {
     const {titre} = this.props
-    const {fraterie} = this.state
+    const {fraterie, isShow} = this.state
     return (
       // React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'React App'))
       // pour plus de praticité on utilise du JSX :
@@ -120,7 +126,15 @@ class App extends Component {
           <Membre 
             age={fraterie.membre4.age}
             nom={fraterie.membre4.nom}>
-            <strong>Parmi les 4 qui est William ?</strong>
+            {
+            isShow ? <strong>Parmi les 4 qui est William ?</strong> : null
+            }
+            <br></br>
+            <button onClick={this.handleShowQuestion}>         
+            {
+              isShow ? 'Cacher' : 'Question ?'
+            }
+            </button> 
           </Membre>
           <Button 
            vieillir={() => this.handleClick(2)} num="2"/>
